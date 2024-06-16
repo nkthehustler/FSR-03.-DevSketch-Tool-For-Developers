@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+      <link rel="stylesheet" href="./style.css" />
+      <title>DevSketch</title>
+      <style>
+         .done-i {
+         display: none;
+         }
+         .completed-task {
+         text-decoration: line-through;
+         }
+         .addtask {
+         display: none;
+         }
+      </style>
+   </head>
+   <body>
+      <div id="outer-box">
+         <div id="menu">
+            <a id="logo" href="./index.html">
+               <h1>❍ DevSketch</h1>
+            </a>
+            <ul id="menu-list">
+               <a class="menu-item" id="editor" href="./editor.html">
+                  <li>Editor</li>
+               </a>
+               <a class="menu-item" id="whiteboard" href="./whiteboard.html">
+                  <li>Whiteboard</li>
+               </a>
+               <a class="menu-item selected" id="manager" href="./manager.html">
+                  <li>Manager</li>
+               </a>
+            </ul>
+         </div>
+         <div class="cont">
+            <div id="cont-2">
+               <h1>All Tasks</h1>
+               <div class="inner-box-m">
+                  <div class="left-box newtask">
+                     <i class="bi bi-plus-circle"></i>
+                     <p>New Task</p>
+                  </div>
+                  <div class="left-box addtask">
+                     <h3>Task</h3>
+                     <input class="title" type="text" name="title">
+                     <h3>Type</h3>
+                     <input class="type" type="text" name="type">
+                     <button type="button" id="add-task-button">Add Task</button>
+                  </div>
+                  <div class="right-box" id="right-boxx">
+                     <div class="right-top other notdone">
+                        <div id="heading-rb">
+                           <p>HTML Structure creation</p>
+                           <h2>Other ++</h2>
+                        </div>
+                        <div id="logo-rb" class="notdone-i"><i class="bi bi-check-circle"></i></div>
+                        <div id="logo-rb" class="done-i"><i class="bi bi-check-circle-fill"></i></div>
+                     </div>
+                     <div class="right-top code notdone">
+                        <div id="heading-rb">
+                           <p>HTML Structure creation</p>
+                           <h2>Code <></h2>
+                        </div>
+                        <div id="logo-rb" class="notdone-i"><i class="bi bi-check-circle"></i></div>
+                        <div id="logo-rb" class="done-i"><i class="bi bi-check-circle-fill"></i></div>
+                     </div>
+                     <div class="right-top design notdone">
+                        <div id="heading-rb">
+                           <p>HTML Structure creation</p>
+                           <h2>Design //</h2>
+                        </div>
+                        <div id="logo-rb" class="notdone-i"><i class="bi bi-check-circle"></i></div>
+                        <div id="logo-rb" class="done-i"><i class="bi bi-check-circle-fill"></i></div>
+                     </div>
+                     <div class="right-top other notdone">
+                        <div id="heading-rb">
+                           <p>HTML Structure creation</p>
+                           <h2>Other ++</h2>
+                        </div>
+                        <div id="logo-rb" class="notdone-i"><i class="bi bi-check-circle"></i></div>
+                        <div id="logo-rb" class="done-i"><i class="bi bi-check-circle-fill"></i></div>
+                     </div>
+                     <div class="right-top code notdone">
+                        <div id="heading-rb">
+                           <p>HTML Structure creation</p>
+                           <h2>Code <></h2>
+                        </div>
+                        <div id="logo-rb" class="notdone-i"><i class="bi bi-check-circle"></i></div>
+                        <div id="logo-rb" class="done-i"><i class="bi bi-check-circle-fill"></i></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+         document.addEventListener("DOMContentLoaded", () => {
+           const newTaskDiv = document.querySelector('.newtask');
+           const addTaskDiv = document.querySelector('.addtask');
+           const addTaskButton = document.getElementById('add-task-button');
+           const rightBox = document.getElementById('right-boxx');
+         
+           newTaskDiv.addEventListener('click', () => {
+             newTaskDiv.style.display = 'none';
+             addTaskDiv.style.display = 'flex';
+           });
+         
+           addTaskButton.addEventListener('click', () => {
+             const titleInput = document.querySelector('.addtask .title').value;
+             const typeInput = document.querySelector('.addtask .type').value;
+         
+             if (titleInput && typeInput) {
+               const newTask = document.createElement('div');
+               newTask.className = `right-top ${typeInput.toLowerCase()} notdone`;
+               newTask.innerHTML = `
+                 <div id="heading-rb">
+                   <p>${titleInput}</p>
+                   <h2>${typeInput}</h2>
+                 </div>
+                 <div id="logo-rb" class="notdone-i"><i class="bi bi-check-circle"></i></div>
+                 <div id="logo-rb" class="done-i"><i class="bi bi-check-circle-fill"></i></div>
+               `;
+         
+               // Prepend the new task to the beginning of the right-box
+               rightBox.insertBefore(newTask, rightBox.firstChild);
+         
+               // Clear the input fields
+               document.querySelector('.addtask .title').value = '';
+               document.querySelector('.addtask .type').value = '';
+         
+               // Hide the add task div and show the new task div
+               addTaskDiv.style.display = 'none';
+               newTaskDiv.style.display = 'flex';
+             }
+           });
+         
+           document.addEventListener('click', (event) => {
+             const isClickInsideAddTask = addTaskDiv.contains(event.target);
+             const isClickOnNewTask = newTaskDiv.contains(event.target);
+         
+             if (!isClickInsideAddTask && !isClickOnNewTask) {
+               addTaskDiv.style.display = 'none';
+               newTaskDiv.style.display = 'flex';
+             }
+           });
+         
+           rightBox.addEventListener('click', (event) => {
+             if (event.target.closest('.notdone-i')) {
+               const notDoneIcon = event.target.closest('.notdone-i');
+               const taskDiv = notDoneIcon.closest('.right-top');
+               const doneIcon = taskDiv.querySelector('.done-i');
+         
+               notDoneIcon.style.display = 'none';
+               doneIcon.style.display = 'block';
+               taskDiv.classList.add('completed-task');
+             }
+           });
+         });
+      </script>
+   </body>
+</html>

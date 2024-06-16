@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="shortcut icon" href="./icons/favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+      <link rel="stylesheet" href="style.css">
+      <title>DevSketch - Editor</title>
+   </head>
+   <body>
+      <div id="outer-box">
+         <div id="menu">
+            <a id="logo" href="./index.html">
+               <h1>❍ DevSketch</h1>
+            </a>
+            <ul id="menu-list">
+               <a class="menu-item selected" id="editor" href="./editor.html">
+                  <li>Editor</li>
+               </a>
+               <a class="menu-item" id="whiteboard" href="./whiteboard.html">
+                  <li>Whiteboard</li>
+               </a>
+               <a class="menu-item" id="manager" href="./manager.html">
+                  <li>Manager</li>
+               </a>
+            </ul>
+         </div>
+         <div id="cont">
+            <div id="code-editor-container">
+               <div id="code-inputs">
+                  <div class="code-input">
+                     <h2>HTML <></h2>
+                     <textarea id="html-code" placeholder="Write html here..."></textarea>
+                  </div>
+                  <div class="code-input">
+                     <h2>CSS {}</h2>
+                     <textarea id="css-code" placeholder="Write css here..."></textarea>
+                  </div>
+                  <div class="code-input">
+                     <h2>JS ()</h2>
+                     <textarea id="js-code" placeholder="Write js here..."></textarea>
+                  </div>
+               </div>
+               <div id="preview-panel">
+                  <iframe id="preview-frame"></iframe>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script></script>
+      <script src="script.js"></script>
+   </body>
+</html>
